@@ -1,26 +1,26 @@
-# Material cru (entrada)
+# Raw content (input)
 
-Coloque aqui os arquivos "crus" do conteúdo que você quer contribuir: anotações, um notebook
-antigo, `.md`, `.txt`, exemplos em `.py`, um PDF, uma lista de tópicos, um CSV de exemplo. Não
-precisa formatar nem organizar — é esse material que a *skill* `gerar-modulo-ipynb` vai reescrever
-no padrão do curso.
+Place here the "raw" files for the content you want to contribute: lecture notes, an old
+notebook, `.md`, `.txt`, examples in `.py`, a PDF, a list of topics, a sample CSV. It doesn't
+need to be formatted or organized — this is exactly the material the `gerar-modulo-ipynb`
+*skill* will rewrite to the course's standard.
 
-Duas formas de organizar, as duas funcionam:
+Two ways to organize it, both work:
 
 ```
 raw_content/
-├── module_10.ipynb              um arquivo só, já com o número do módulo
-└── testes-automatizados/        ou uma subpasta com vários arquivos do mesmo assunto
-    ├── anotacoes.md
-    ├── exemplos.py
-    └── roteiro-da-aula.txt
+├── module_10.ipynb              a single file, already named with the module number
+└── automated-tests/             or a subfolder with several files on the same topic
+    ├── notes.md
+    ├── examples.py
+    └── lesson-outline.txt
 ```
 
-Com vários arquivos, prefira a subpasta: fica claro o que faz parte da mesma contribuição.
+With several files, prefer the subfolder: it makes clear what belongs to the same contribution.
 
-**Não coloque aqui** material protegido por direitos autorais de outra pessoa ou escola, dados
-pessoais, credenciais, nem arquivos binários grandes.
+**Don't put here** material protected by someone else's or another school's copyright, personal
+data, credentials, or large binary files.
 
-Depois, peça ao Claude: *"gere o módulo 10 a partir dos arquivos em
-`contributing/raw_content/testes-automatizados/`"*. Detalhes em
+Then ask Claude: *"generate module 10 from the files in
+`contributing/raw_content/automated-tests/`"*. Details in
 [`CONTRIBUTING.md`](../../CONTRIBUTING.md).
