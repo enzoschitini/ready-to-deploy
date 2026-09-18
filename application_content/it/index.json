@@ -75,7 +75,7 @@
     "kicker": "// manifesto",
     "quoteHtml": "Qualunque sia il futuro della tecnologia, <br /><span class=\"c-cyan\">imparare facendo è diventata una <strong class=\"c-accent\">priorità[0]</strong>.</span>",
     "textHtml": "Roadmap, moduli e progetti creati <strong class=\"c-fg\" style=\"font-weight:600\">da dev per dev</strong>, testati nella pratica e rilasciati <strong class=\"c-accent\" style=\"font-weight:600\">senza paywall</strong>: così la community costruisce per chi verrà dopo.",
-    "pull": "In un'epoca con così tanti contenuti, separare il grano dal loglio è l'unico modo per imparare davvero.",
+    "pull": "Quando l'informazione è infinita, l'attenzione diventa la risorsa più rara — ed è proprio questa attenzione, ben indirizzata, a distinguere chi apprende da chi si limita a consumare.",
     "cta": { "label": "Impara gratis. Contribuisci perché altre persone possano imparare.", "href": "#modulos" },
     "note": "gratis · open source · IT"
   },
