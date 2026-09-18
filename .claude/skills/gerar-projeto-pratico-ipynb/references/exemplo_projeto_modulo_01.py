@@ -1,12 +1,12 @@
 """Exemplo de referência (padrão ouro): script que gerou o Projeto Prático do Módulo 01.
 
-Baseado em content_generation/jupyter_notebooks/module_01.ipynb. Use como modelo
+Baseado em bootcamps/jupyter_notebooks_pt_br/Python na Prática/Módulos/module_01.ipynb. Use como modelo
 de tom, ritmo das missões, nível de guia (dados prontos + # TODO), formato das
 mensagens dos personagens e de como cada "Resultado esperado" tem uma solução
 que o comprova. Não copie o conteúdo: cada módulo tem os seus conceitos.
 
 Execução:
-    python exemplo_projeto_modulo_01.py content_generation/jupyter_notebooks/module_01_projeto_pratico.ipynb
+    python exemplo_projeto_modulo_01.py contributing/generated_ipynb/projects/project_01.ipynb
 """
 
 import os

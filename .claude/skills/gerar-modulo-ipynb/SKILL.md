@@ -1,6 +1,6 @@
 ---
 name: gerar-modulo-ipynb
-description: Gera um módulo didático em .ipynb (Jupyter/Colab) do curso "Ready To Deploy", de Enzo Schitini, a partir de um conteúdo "cru" (material de aula antigo) em content_generation/raw_content/, reescrevendo-o com muito mais qualidade no padrão oficial do curso e salvando em content_generation/jupyter_notebooks/. Use SEMPRE que o usuário pedir para gerar, criar, reescrever, melhorar, padronizar ou estruturar um módulo, aula ou notebook do curso (ex: "gere o módulo 03", "faz o module_05"), ou quando ele apontar um arquivo em content_generation/raw_content/, mesmo que não fale em "skill", "padrão" ou "Ready To Deploy".
+description: Gera um módulo didático em .ipynb (Jupyter/Colab) do curso "Ready To Deploy", de Enzo Schitini, a partir de material "cru" (arquivos de aula, anotações, notebooks antigos) colocado em contributing/raw_content/, reescrevendo-o com muito mais qualidade no padrão oficial do curso e salvando em contributing/generated_ipynb/modules/. Use SEMPRE que o usuário pedir para gerar, criar, reescrever, melhorar, padronizar ou estruturar um módulo, aula ou notebook do curso (ex: "gere o módulo 03", "faz o module_05", "gera um módulo com os arquivos que subi"), ou quando ele apontar arquivos em contributing/raw_content/, mesmo que não fale em "skill", "padrão", "contribuição" ou "Ready To Deploy".
 ---
 
 # Gerar módulo .ipynb — Ready To Deploy
@@ -8,6 +8,29 @@ description: Gera um módulo didático em .ipynb (Jupyter/Colab) do curso "Ready
 Transforme um conteúdo cru em um módulo de curso **pronto para publicar**: bem estruturado, didático, correto e executável do começo ao fim. O conteúdo cru serve de **base e roteiro**, não de limite. O resultado deve ser claramente melhor: explicações mais claras, exemplos mais bem escolhidos, erros corrigidos e código comentado com nomes em português.
 
 O público são **iniciantes que falam português do Brasil**. Cada decisão deve ajudar essa pessoa a entender *por que* algo funciona, e não só *como*.
+
+Quem usa esta skill pode ser o autor do curso ou **qualquer pessoa contribuindo** com o
+repositório. O fluxo completo de contribuição (clonar → subir material cru → gerar → abrir
+*pull request*) está em `CONTRIBUTING.md`, na raiz do projeto.
+
+## Onde os arquivos ficam
+
+Todo o trabalho de criação de conteúdo acontece dentro de `contributing/`, a área de
+contribuição do repositório:
+
+```
+contributing/
+├── raw_content/          material cru, colocado ali por quem contribui (ENTRADA)
+└── generated_ipynb/
+    ├── modules/          módulos gerados por esta skill (SAÍDA)
+    └── projects/         projetos gerados pela skill gerar-projeto-pratico-ipynb
+```
+
+Nunca escreva em `bootcamps/`, `course_content/` ou `application_content/`: essas são as pastas
+da aplicação publicada, e é o autor do curso que move o conteúdo aprovado para lá depois do
+merge da *pull request*. Elas servem apenas de **leitura**: `bootcamps/<lang>/<bootcamp>/Módulos/`
+tem os módulos já publicados (útil para conferir numeração, tom e o que já foi ensinado) e
+`course_content/<lang>/bootcamps.json` tem o currículo de cada bootcamp.
 
 ## Arquivos da skill
 
@@ -17,12 +40,13 @@ O público são **iniciantes que falam português do Brasil**. Cada decisão dev
 
 ## Fluxo de trabalho
 
-1. **Localize e leia o conteúdo cru inteiro.** Os arquivos crus ficam sempre em **`content_generation/raw_content/`**, com o nome `module_NN.*` (normalmente `.ipynb`). Se o usuário pedir só "gere o módulo 03", procure `content_generation/raw_content/module_03.*`. Se não encontrar, liste a pasta e pergunte qual arquivo usar, em vez de adivinhar ou procurar em outro lugar. Anote os tópicos, a ordem, os exemplos e as motivações ("problema do mundo real" → "revisitando a motivação"). Anote também o que está errado, desatualizado ou fora do escopo do módulo.
+1. **Localize e leia o material cru inteiro.** Ele fica sempre em **`contributing/raw_content/`** e pode ter qualquer forma: um único arquivo (`module_03.ipynb`, `aula.md`, `anotacoes.txt`, `exemplos.py`, um `.pdf`) ou uma subpasta com vários arquivos do mesmo assunto (`contributing/raw_content/estruturas-de-dados/`). Leia **todos** os arquivos que fazem parte da contribuição, não só o primeiro, e trate o conjunto como um só roteiro. Se o usuário pedir "gere o módulo 03", procure `contributing/raw_content/module_03.*`; se o pedido for vago ("gera o módulo com o que subi"), liste a pasta e confirme com ele quais arquivos entram e em que ordem, em vez de adivinhar ou procurar em outro lugar. Anote os tópicos, a ordem, os exemplos e as motivações ("problema do mundo real" → "revisitando a motivação"). Anote também o que está errado, desatualizado, duplicado entre arquivos ou fora do escopo do módulo.
 2. **Leia `references/exemplo_modulo_01.py`** (pelo menos a primeira vez na sessão).
 3. **Descubra número, tema e destino:**
-   - Número: do nome do arquivo ou do título cru (`module_03` → `03`). Use sempre dois dígitos.
+   - Número: do nome do arquivo, do título cru (`module_03` → `03`) ou do próprio pedido. Use sempre dois dígitos. Se o material não trouxer número, pergunte a que bootcamp e a que posição o módulo se destina; confira a numeração já usada em `bootcamps/<lang>/<bootcamp>/Módulos/` e no currículo em `course_content/<lang>/bootcamps.json`. Na dúvida, use o próximo número livre e diga no relatório final que o autor pode renumerar na revisão.
    - Tema: um nome curto e claro, ex: `Variáveis e Tipos de Dados`.
-   - Destino: salve sempre em **`content_generation/jupyter_notebooks/`**, com o nome do módulo: `module_NN.ipynb` (o mesmo nome do arquivo cru, ex: `raw_content/module_03.ipynb` → `jupyter_notebooks/module_03.ipynb`). Só use outro caminho se o usuário pedir explicitamente. Nunca sobrescreva o arquivo cru. Se o arquivo de destino já existir, ele pode ter edições manuais do autor, então pergunte antes de sobrescrever.
+   - Idioma: português do Brasil, a não ser que o usuário peça outro (a versão italiana do curso é feita depois pelo autor).
+   - Destino: salve sempre em **`contributing/generated_ipynb/modules/`**, com o nome `module_NN.ipynb` (ex: `contributing/raw_content/module_03.ipynb` → `contributing/generated_ipynb/modules/module_03.ipynb`). Só use outro caminho se o usuário pedir explicitamente. Nunca sobrescreva o material cru nem um módulo já publicado em `bootcamps/`. Se o arquivo de destino já existir, ele pode ter edições manuais, então pergunte antes de sobrescrever.
 4. **Escreva um script de geração** no diretório temporário (scratchpad) que importe o construtor e monte o notebook célula por célula (veja o modelo abaixo).
 5. **Execute o script e depois o validador.** Corrija tudo o que for ERRO e avalie os AVISOS até o resultado ser `APROVADO`.
 6. **Informe ao usuário** onde o arquivo foi salvo e resuma o que mudou (veja "Relatório final").
@@ -42,11 +66,11 @@ nb.code(r"""
 lista_de_compras = ["arroz", "feijão"]
 print(lista_de_compras)
 """)
-nb.salvar(r"content_generation/jupyter_notebooks/module_02.ipynb")
+nb.salvar(r"contributing/generated_ipynb/modules/module_02.ipynb")
 ```
 
 ```bash
-python <skill>/scripts/validar_notebook.py content_generation/jupyter_notebooks/module_02.ipynb
+python <skill>/scripts/validar_notebook.py contributing/generated_ipynb/modules/module_02.ipynb
 ```
 
 Use strings `r"""..."""` para não precisar escapar `\` (LaTeX, `R\$`). Se o texto precisar conter `"""`, monte essa parte com concatenação ou `.replace()`.
@@ -146,5 +170,6 @@ Depois de gerar e validar, responda de forma breve com:
 2. **Principais melhorias**: o que foi expandido ou acrescentado.
 3. **Correções** de erros do cru, com uma frase de explicação cada.
 4. **O que ficou de fora** e por quê (conteúdo fora do escopo, imagens/logos antigos, links removidos).
+5. **O próximo passo**, quando quem pediu está contribuindo: revisar o notebook no Jupyter/Colab, opcionalmente gerar o projeto prático com a skill `gerar-projeto-pratico-ipynb` e abrir a *pull request* como descrito em `CONTRIBUTING.md`.
 
 Não repita todo o conteúdo do notebook na resposta, porque o usuário vai abri-lo.

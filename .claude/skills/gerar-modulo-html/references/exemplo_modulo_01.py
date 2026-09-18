@@ -1,6 +1,6 @@
 """PADRÃO OURO — script que publica a aula 1 do Módulo 01 do Python na Prática.
 
-Esta é a primeira aula de `content_generation/jupyter_notebooks/module_01.ipynb`
+Esta é a primeira aula de `bootcamps/jupyter_notebooks_pt_br/Python na Prática/Módulos/module_01.ipynb`
 (a seção "## 1. Introdução ao Google Colab") virando a página
 `course_content/pt_br/python-na-pratica/python-variaveis-e-tipos-de-dados/colab.html`.
 

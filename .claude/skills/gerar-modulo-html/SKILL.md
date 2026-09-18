@@ -1,6 +1,6 @@
 ---
 name: gerar-modulo-html
-description: Publica um módulo do curso "Ready To Deploy" no site, a partir de um notebook pronto em content_generation/jupyter_notebooks/module_NN.ipynb - quebra o notebook em uma página HTML por tópico dentro de course_content/<lang>/<bootcamp>/<módulo>/ e cadastra tudo em modules.json, lessons.json e bootcamps.json. Use SEMPRE que o usuário pedir para publicar, cadastrar, subir, transformar em página/HTML ou "colocar no site" um módulo ou aula do curso (ex: "cadastra o módulo 2 no bootcamp Python na Prática", "transforma o module_03.ipynb em páginas", "publica o módulo de listas"), mesmo que não fale em "skill", "HTML" ou "padrão". Não use para gerar o .ipynb em si (isso é a skill gerar-modulo-ipynb).
+description: Publica um módulo do curso "Ready To Deploy" no site, a partir de um notebook pronto em bootcamps/<lang>/<bootcamp>/Módulos/module_NN.ipynb (ou, ao revisar uma contribuição, em contributing/generated_ipynb/modules/module_NN.ipynb) - quebra o notebook em uma página HTML por tópico dentro de course_content/<lang>/<bootcamp>/<módulo>/ e cadastra tudo em modules.json, lessons.json e bootcamps.json. Use SEMPRE que o usuário pedir para publicar, cadastrar, subir, transformar em página/HTML ou "colocar no site" um módulo ou aula do curso (ex: "cadastra o módulo 2 no bootcamp Python na Prática", "transforma o module_03.ipynb em páginas", "publica o módulo de listas"), mesmo que não fale em "skill", "HTML" ou "padrão". Não use para gerar o .ipynb em si (isso é a skill gerar-modulo-ipynb).
 ---
 
 # Publicar módulo em HTML — Ready To Deploy
@@ -12,6 +12,13 @@ Publicar um módulo é, então, duas coisas: **quebrar o notebook em uma página
 
 Cada tópico do notebook vira um item da barra lateral esquerda. É assim que o aluno navega:
 uma aula por vez, com "anterior/próxima" no fim.
+
+> **Esta é a etapa do autor do curso, não do contribuidor.** Quem contribui gera notebooks em
+> `contributing/` (skills `gerar-modulo-ipynb` e `gerar-projeto-pratico-ipynb`) e abre uma
+> *pull request*; veja `CONTRIBUTING.md`. A publicação no site acontece depois da aprovação,
+> quando o notebook já foi movido para `bootcamps/<lang>/<bootcamp>/Módulos/`. Se o usuário
+> pedir para publicar um notebook que ainda está em `contributing/generated_ipynb/modules/`,
+> avise que ele ainda não foi aprovado e confirme antes de seguir.
 
 ## Arquivos da skill
 
@@ -30,10 +37,13 @@ uma aula por vez, com "anterior/próxima" no fim.
 
 ## Fluxo de trabalho
 
-1. **Leia o notebook inteiro** em `content_generation/jupyter_notebooks/module_NN.ipynb`.
+1. **Leia o notebook inteiro.** Ele fica em `bootcamps/<lang>/<bootcamp>/Módulos/module_NN.ipynb`
+   (ex: `bootcamps/jupyter_notebooks_pt_br/Python na Prática/Módulos/module_02.ipynb`) — é a
+   pasta dos notebooks já aprovados, por idioma e bootcamp. Ao revisar uma contribuição ainda
+   não movida, o notebook pode estar em `contributing/generated_ipynb/modules/module_NN.ipynb`.
    Anote as seções `## N.`, as subseções `### N.M`, os exemplos e as saídas de cada célula de
-   código (elas viram comentário no HTML). Se o notebook não existir, avise o usuário e sugira
-   gerá-lo antes com a skill `gerar-modulo-ipynb`.
+   código (elas viram comentário no HTML). Se o notebook não existir em nenhum dos dois lugares,
+   avise o usuário e sugira gerá-lo antes com a skill `gerar-modulo-ipynb`.
 2. **Leia `references/exemplo_modulo_01.py`** (pelo menos uma vez por sessão).
 3. **Descubra o bootcamp e o `module_id` em `course_content/<lang>/bootcamps.json`.** Os módulos
    já estão no currículo do bootcamp, com id definido e `"disabled": true` — **use o id que está

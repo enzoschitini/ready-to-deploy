@@ -14,7 +14,7 @@ Uso (dentro de um script de geração):
     # Comentário curto
     print("olá")
     ''')
-    nb.salvar("content_generation/jupyter_notebooks/module_02.ipynb")
+    nb.salvar("contributing/generated_ipynb/modules/module_02.ipynb")
 
 Cada chamada de md()/code() vira UMA célula. Espaços/quebras de linha no
 início e no fim do texto são removidos, então pode escrever o conteúdo

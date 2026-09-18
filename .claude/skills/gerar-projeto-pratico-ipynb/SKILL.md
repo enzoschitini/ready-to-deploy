@@ -1,6 +1,6 @@
 ---
 name: gerar-projeto-pratico-ipynb
-description: Gera o projeto prático em .ipynb (Jupyter/Colab) de um módulo do curso "Ready To Deploy", de Enzo Schitini — um notebook com história, missões guiadas, resultado esperado, dicas, desafios extras e checklist, para o aluno praticar os conceitos do módulo — a partir do módulo já pronto em content_generation/jupyter_notebooks/module_NN.ipynb, salvando como module_NN_projeto_pratico.ipynb. Use SEMPRE que o usuário pedir projeto prático, projeto do módulo, atividade prática, exercícios práticos, desafio ou "lista pra praticar" de um módulo do curso (ex: "gera o projeto do módulo 03", "cria a prática do module_05"), mesmo que não fale em "skill" ou "padrão". Não use para gerar o módulo em si (isso é a skill gerar-modulo-ipynb).
+description: Gera o projeto prático em .ipynb (Jupyter/Colab) de um módulo do curso "Ready To Deploy", de Enzo Schitini — um notebook com história, missões guiadas, resultado esperado, dicas, desafios extras e checklist, para o aluno praticar os conceitos do módulo — a partir de um módulo em contributing/generated_ipynb/modules/, de um módulo já publicado em bootcamps/<lang>/<bootcamp>/Módulos/, de material cru em contributing/raw_content/ ou de uma combinação deles, salvando em contributing/generated_ipynb/projects/project_NN.ipynb. Use SEMPRE que o usuário pedir projeto prático, projeto do módulo, atividade prática, exercícios práticos, desafio ou "lista pra praticar" de um módulo do curso (ex: "gera o projeto do módulo 03", "cria a prática do module_05", "faz um projeto com esses arquivos"), mesmo que não fale em "skill" ou "padrão". Não use para gerar o módulo em si (isso é a skill gerar-modulo-ipynb).
 ---
 
 # Gerar projeto prático .ipynb — Ready To Deploy
@@ -8,6 +8,30 @@ description: Gera o projeto prático em .ipynb (Jupyter/Colab) de um módulo do 
 Um projeto prático é onde o aluno **usa** o que acabou de aprender no módulo, dentro de uma história. Ele precisa ter um nível real de desafio, mas **não pode parecer uma prova**: é um dia de trabalho numa empresa fictícia, com colegas pedindo coisas no chat. O próprio notebook guia o aluno: os dados já vêm prontos, o pedido é claro, cada missão mostra o resultado esperado e dá uma dica que aponta a seção do módulo a revisar.
 
 O público são **iniciantes que falam português do Brasil**.
+
+Quem usa esta skill pode ser o autor do curso ou **qualquer pessoa contribuindo** com o
+repositório. O fluxo completo de contribuição (clonar → subir material cru → gerar → abrir
+*pull request*) está em `CONTRIBUTING.md`, na raiz do projeto.
+
+## Onde os arquivos ficam
+
+Todo o trabalho de criação de conteúdo acontece dentro de `contributing/`, a área de
+contribuição do repositório:
+
+```
+contributing/
+├── raw_content/          material cru, colocado ali por quem contribui (entrada possível)
+└── generated_ipynb/
+    ├── modules/          módulos gerados pela skill gerar-modulo-ipynb (entrada possível)
+    └── projects/         projetos gerados por esta skill (SAÍDA)
+```
+
+Nunca escreva em `bootcamps/`, `course_content/` ou `application_content/`: essas são as pastas
+da aplicação publicada, e é o autor do curso que move o conteúdo aprovado para lá depois do
+merge da *pull request*. Elas servem apenas de **leitura**:
+`bootcamps/<lang>/<bootcamp>/Módulos/module_NN.ipynb` tem os módulos já publicados (é de onde
+vem o inventário de escopo) e `bootcamps/<lang>/<bootcamp>/Projetos/project_NN.ipynb` tem os
+projetos já publicados.
 
 ## Arquivos da skill
 
@@ -20,8 +44,14 @@ As duas skills dependem uma da outra: os scripts daqui importam `construtor_note
 
 ## Fluxo de trabalho
 
-1. **Leia o módulo inteiro** em `content_generation/jupyter_notebooks/module_NN.ipynb` (o módulo já pronto, não o cru de `raw_content/`). Se ele não existir, avise o usuário e sugira gerar o módulo primeiro com a skill `gerar-modulo-ipynb`.
-2. **Faça o inventário do escopo.** Liste as seções, e em cada uma as funções, métodos, operadores e padrões mostrados, e anote os exemplos e motivações do módulo. O escopo permitido é **tudo o que foi ensinado do Módulo 01 até o NN**: dê uma olhada na tabela de Tópicos dos módulos anteriores. Anote também o que ainda **não** foi ensinado (os Tópicos do módulo NN+1 e as dicas de "veremos em módulos futuros"), porque o projeto não pode depender disso.
+1. **Leia a fonte inteira.** O projeto prático nasce de uma destas fontes — descubra qual é antes de começar e, se o pedido for ambíguo, pergunte:
+   - **um módulo pronto** em `contributing/generated_ipynb/modules/module_NN.ipynb` (o caso mais comum: o contribuidor acabou de gerá-lo com a skill `gerar-modulo-ipynb`);
+   - **um módulo já publicado** em `bootcamps/<lang>/<bootcamp>/Módulos/module_NN.ipynb`, quando o projeto é para um módulo que já está no ar;
+   - **material cru** em `contributing/raw_content/` (um arquivo ou uma subpasta com vários), quando ainda não existe módulo — nesse caso o material cru define o escopo, e você extrai dele a lista de conceitos como se fosse a tabela de Tópicos de um módulo;
+   - **uma combinação**: por exemplo, o módulo de `contributing/generated_ipynb/modules/` mais arquivos de `contributing/raw_content/` com dados, exemplos ou um cenário pedido pelo contribuidor. Leia tudo e trate o conjunto como um só escopo.
+
+   Se o usuário pedir "o projeto do módulo 03" e não houver `module_03.ipynb` em `contributing/generated_ipynb/modules/` nem em `bootcamps/<lang>/<bootcamp>/Módulos/`, liste o que existe nessas pastas e em `contributing/raw_content/` e pergunte, ou sugira gerar o módulo primeiro com a skill `gerar-modulo-ipynb`.
+2. **Faça o inventário do escopo.** Liste as seções, e em cada uma as funções, métodos, operadores e padrões mostrados, e anote os exemplos e motivações da fonte. O escopo permitido é **tudo o que foi ensinado do Módulo 01 até o NN**: dê uma olhada na tabela de Tópicos dos módulos anteriores (em `bootcamps/<lang>/<bootcamp>/Módulos/`, ou em `contributing/generated_ipynb/modules/` quando o módulo ainda não foi publicado). Anote também o que ainda **não** foi ensinado (os Tópicos do módulo NN+1 e as dicas de "veremos em módulos futuros"), porque o projeto não pode depender disso. Quando a fonte for só material cru, sem módulo nem posição definida, confirme com o usuário a que altura do curso o projeto entra — é isso que define o escopo.
 3. **Leia as duas referências** (o exemplo e o histórico de temas).
 4. **Planeje antes de escrever** (veja "Cenário de cada projeto" e "Desenhando as missões"): o cenário fictício deste módulo (empresa/app, 2 a 4 personagens novos), as missões (tema, personagem, conceito, dados) e os extras.
 5. **Escreva o script de geração** no scratchpad, importando o construtor (modelo abaixo), com uma solução para cada missão e cada extra que tenha resultado esperado.
@@ -29,7 +59,7 @@ As duas skills dependem uma da outra: os scripts daqui importam `construtor_note
 7. **Atualize** `references/historico_temas.md` com uma linha para o cenário deste módulo.
 8. **Informe ao usuário** (veja "Relatório final").
 
-Destino: `content_generation/jupyter_notebooks/module_NN_projeto_pratico.ipynb`. Se o arquivo já existir, ele pode ter edições manuais do autor: pergunte antes de sobrescrever. Só gere o notebook com as soluções (`caminho_gabarito=` no `salvar()`, ex: `module_NN_projeto_pratico_gabarito.ipynb`) se o usuário pedir.
+Destino: **`contributing/generated_ipynb/projects/project_NN.ipynb`**, onde `NN` é o número do módulo correspondente, com dois dígitos (é a mesma convenção dos projetos publicados em `bootcamps/<lang>/<bootcamp>/Projetos/`). Se o arquivo já existir, ele pode ter edições manuais: pergunte antes de sobrescrever. Nunca sobrescreva o material cru, o módulo de origem nem nada dentro de `bootcamps/`. Só gere o notebook com as soluções (`caminho_gabarito=` no `salvar()`, ex: `project_NN_gabarito.ipynb`) se o usuário pedir. O idioma é o português do Brasil, a não ser que o usuário peça outro (a versão italiana é feita depois pelo autor).
 
 ```python
 import sys
@@ -60,11 +90,11 @@ nb.resultado_esperado("Preço médio: R$ 33.80")
 nb.dica("revise a seção 1.3 do Módulo 02 ...")
 nb.separador()
 # ... demais missões, extras e checklist
-nb.salvar(r"content_generation/jupyter_notebooks/module_02_projeto_pratico.ipynb")
+nb.salvar(r"contributing/generated_ipynb/projects/project_02.ipynb")
 ```
 
 ```bash
-python <skill>/scripts/validar_projeto.py content_generation/jupyter_notebooks/module_02_projeto_pratico.ipynb
+python <skill>/scripts/validar_projeto.py contributing/generated_ipynb/projects/project_02.ipynb
 ```
 
 ## Estrutura obrigatória
@@ -83,7 +113,7 @@ Este esqueleto é a identidade dos projetos, e o validador confere todos os iten
    - `nb.dica(...)`;
    - `nb.separador()`.
 7. `## 🌟 Desafios extras`: introdução dizendo que são opcionais, e depois 3 a 5 extras `### <emoji> Extra N — Nome`, cada um com Markdown curto, `nb.exercicio(...)` e, quando fizer sentido, `nb.resultado_esperado(...)`. Sem separador entre os extras; um `nb.separador()` depois do último.
-8. `## ✅ Checklist de autoavaliação`: itens `- [ ]` (um por habilidade praticada, não por missão), uma frase de parabéns e um gancho para o próximo módulo, **com o tema real dele** (confira o título de `module_NN+1.ipynb`).
+8. `## ✅ Checklist de autoavaliação`: itens `- [ ]` (um por habilidade praticada, não por missão), uma frase de parabéns e um gancho para o próximo módulo, **com o tema real dele** (confira o título de `module_NN+1.ipynb` em `bootcamps/<lang>/<bootcamp>/Módulos/` ou em `contributing/generated_ipynb/modules/`; se o módulo seguinte ainda não existir, pergunte ao usuário qual é o tema dele).
 
 ## Desenhando as missões
 
@@ -131,5 +161,6 @@ Responda de forma breve com:
 2. O cenário escolhido em uma frase e a tabela de missões (missão → conceito do módulo).
 3. Os extras, em uma linha cada.
 4. Qualquer conceito do módulo que ficou de fora do projeto, e por quê.
+5. **O próximo passo**, quando quem pediu está contribuindo: rodar o notebook do início ao fim como um aluno e abrir a *pull request* como descrito em `CONTRIBUTING.md`.
 
 Não repita o conteúdo do notebook, porque o usuário vai abri-lo.

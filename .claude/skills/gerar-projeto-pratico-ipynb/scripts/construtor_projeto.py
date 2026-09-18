@@ -33,7 +33,7 @@ Uso (dentro de um script de geração):
     nb.resultado_esperado("Dobro: 20")
     nb.dica("revise a seção 3.3 do Módulo 02.")
     nb.separador()
-    nb.salvar("content_generation/jupyter_notebooks/module_02_projeto_pratico.ipynb")
+    nb.salvar("contributing/generated_ipynb/projects/project_02.ipynb")
 """
 
 import contextlib

@@ -1,11 +1,11 @@
 """Exemplo de referência (padrão ouro): script que gerou o Módulo 01.
 
-Gerado a partir de content_generation/raw_content/module_01.ipynb e aprovado
+Gerado a partir de contributing/raw_content/module_01.ipynb e aprovado
 pelo autor do curso. Use como modelo de tom, profundidade, organização das
 células e estilo de código. Não copie o conteúdo: cada módulo tem o seu tema.
 
 Execução:
-    python exemplo_modulo_01.py content_generation/jupyter_notebooks/module_01.ipynb
+    python exemplo_modulo_01.py contributing/generated_ipynb/modules/module_01.ipynb
 """
 
 import os
