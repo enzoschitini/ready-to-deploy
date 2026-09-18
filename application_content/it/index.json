@@ -132,8 +132,8 @@
       "lines": [
         { "cmd": "git clone", "arg": "https://github.com/enzoschitini/ready-to-deploy", "argType": "url" },
         { "cmd": "cd", "arg": "ready-to-deploy" },
-        { "cmd": "python -m http.server 8000" },
-        { "cmd": "code content_generation", "comment": "// crea un nuovo modulo", "caret": true }
+        { "cmd": "code contributing/raw_content", "comment": "// aggiungi qui il tuo materiale" },
+        { "cmd": "claude", "comment": "// \"genera il modulo 10 dai miei file\"", "caret": true }
       ]
     },
     "titleHtml": "Fai parte di ciò che viene <span class=\"c-accent\">dopo</span>.",
