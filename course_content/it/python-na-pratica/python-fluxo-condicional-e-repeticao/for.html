@@ -1,0 +1,175 @@
+<div class="prose">
+<p>Buona parte del lavoro di un programma è ripetitivo: sommare tutti i valori di una lista, verificare ogni riga di un foglio di calcolo, elaborare ogni cliente di un registro. Invece di ripetere il codice manualmente, usiamo la struttura di ripetizione <code>for</code>.</p>
+<h2>Motivazione</h2>
+<p>Hai le vendite del giorno di un negozio e vuoi sapere due cose: il <strong>totale venduto</strong> e <strong>quante vendite</strong> hanno superato R$ 300,00.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">vendite_del_giorno = [361, 553, 194, 13, 510, 33, 135]
+</code></pre></div>
+<p><strong>Come elaboriamo tutti questi valori senza scrivere una riga di codice per ciascuno?</strong></p>
+<h2>for / range</h2>
+<p>La struttura <code>for</code> esegue un blocco di codice <strong>una volta per ogni elemento</strong> di una collezione. Combinata con la funzione nativa <code>range()</code>, ripete il blocco un numero determinato di volte:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for variabile_temporanea in range(inizio, fine, passo):
+  # eseguito una volta per ogni valore nell'intervallo
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for valore in range(6):
+  print(valore)
+# 0
+# 1
+# 2
+# 3
+# 4
+# 5
+</code></pre></div>
+<blockquote>
+<p><code>range(fine)</code> inizia da 0; <code>range(inizio, fine)</code> definisce l'inizio; <code>range(inizio, fine, passo)</code> definisce anche l'incremento. Proprio come nello slicing delle <em>stringhe</em> (Modulo 01), il valore <code>fine</code> <strong>non</strong> viene mai incluso.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># Multipli di 3, da 0 (incluso) a 15 (escluso)
+for multiplo_di_tre in range(0, 15, 3):
+  print(multiplo_di_tre)
+# 0
+# 3
+# 6
+# 9
+# 12
+</code></pre></div>
+<h2>for / liste</h2>
+<p>Il modo più comune di usare il <code>for</code> è per percorrere gli elementi di una lista, uno per uno:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for vendita in vendite_del_giorno:
+  print(vendita)
+# 361
+# 553
+# 194
+# 13
+# 510
+# 33
+# 135
+</code></pre></div>
+<p>Uno schema molto comune è <strong>accumulare</strong> un risultato a ogni ripetizione, usando una variabile creata <strong>prima</strong> del <code>for</code>:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">totale_venduto = 0
+
+for vendita in vendite_del_giorno:
+  totale_venduto += vendita
+
+print(f'Totale venduto: R$ {totale_venduto:.2f}')
+# Totale venduto: R$ 1799.00
+</code></pre></div>
+<p>E possiamo combinare il <code>for</code> con l'<code>if</code> (visto nella sezione 1) per contare solo gli elementi che soddisfano una condizione:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">quantita_vendite_sopra_300 = 0
+
+for vendita in vendite_del_giorno:
+  if vendita &gt; 300:
+    quantita_vendite_sopra_300 += 1
+
+print(f'Vendite sopra R$ 300: {quantita_vendite_sopra_300}')
+# Vendite sopra R$ 300: 3
+</code></pre></div>
+<blockquote>
+<p>Anche le <em>stringhe</em> sono sequenze e possono essere percorse carattere per carattere. L'operatore <code>in</code> qui verifica se un carattere <strong>appartiene</strong> a un altro testo.</p>
+</blockquote>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">frase = 'Ready To Deploy'
+quantita_vocali = 0
+
+for carattere in frase.lower():
+  if carattere in 'aeiou':
+    quantita_vocali += 1
+
+print(f'Quantità di vocali: {quantita_vocali}')
+# Quantità di vocali: 5
+</code></pre></div>
+<h2>for / dizionari</h2>
+<p>I dizionari hanno tre metodi per essere percorsi in un <code>for</code>: <code>.items()</code> (chiave e valore), <code>.keys()</code> (solo le chiavi) e <code>.values()</code> (solo i valori).</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">punteggio_di_credito = {'123.456.789-00': 750, '987.654.321-00': 812, '111.222.333-44': 980}
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .items(): restituisce ogni coppia chiave-valore
+for documento, punteggio in punteggio_di_credito.items():
+  print(f'Documento {documento}: punteggio {punteggio}')
+# Documento 123.456.789-00: punteggio 750
+# Documento 987.654.321-00: punteggio 812
+# Documento 111.222.333-44: punteggio 980
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .keys(): restituisce solo le chiavi
+for documento in punteggio_di_credito.keys():
+  print(documento)
+# 123.456.789-00
+# 987.654.321-00
+# 111.222.333-44
+</code></pre></div>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python"># .values(): restituisce solo i valori
+for punteggio in punteggio_di_credito.values():
+  print(punteggio)
+# 750
+# 812
+# 980
+</code></pre></div>
+<blockquote>
+<p><code>for documento in punteggio_di_credito:</code> (senza <code>.keys()</code>) ha esattamente lo stesso effetto, poiché percorrere direttamente un dizionario restituisce già le sue chiavi.</p>
+</blockquote>
+<h2>break / continue</h2>
+<p>Due parole chiave controllano l'andamento di un ciclo <code>for</code>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Parola chiave</th><th>Effetto</th></tr></thead>
+<tbody>
+<tr><td><code>break</code></td><td>interrompe il ciclo <strong>immediatamente</strong>, senza eseguire le ripetizioni rimanenti</td></tr>
+<tr><td><code>continue</code></td><td>salta direttamente alla <strong>prossima ripetizione</strong>, senza eseguire il resto del blocco attuale</td></tr>
+</tbody>
+</table></div>
+<p><strong>Esempio:</strong> fermarsi non appena troviamo la prima vendita superiore a R$ 500,00.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for vendita in vendite_del_giorno:
+  if vendita &gt; 500:
+    print(f'Prima vendita sopra R$ 500: {vendita}')
+    break
+# Prima vendita sopra R$ 500: 553
+</code></pre></div>
+<p><strong>Esempio:</strong> mostrare solo le vendite con valore <strong>pari</strong>, saltando le dispari con <code>continue</code>.</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">for vendita in vendite_del_giorno:
+  if vendita % 2 != 0:
+    continue
+  print(f'Vendita pari: {vendita}')
+# Vendita pari: 194
+# Vendita pari: 510
+</code></pre></div>
+<blockquote>
+<p><strong>Attenzione:</strong> qualsiasi codice scritto <strong>dopo</strong> un <code>break</code> o <code>continue</code>, ancora dentro lo stesso blocco <code>if</code>, non viene mai eseguito — il ciclo è già stato interrotto o è già avanzato prima di arrivarci.</p>
+</blockquote>
+<h2>Rivisitando la motivazione</h2>
+<p>Con <code>for</code>, <code>if</code> e l'accumulo in variabili, risolviamo le due domande della motivazione in un unico ciclo:</p>
+<div class="code-block"><button type="button" class="copy-btn" aria-label="Copia codice">copia</button><pre><code class="language-python">vendite_del_giorno = [361, 553, 194, 13, 510, 33, 135]
+
+totale_venduto = 0
+quantita_vendite_sopra_300 = 0
+
+for vendita in vendite_del_giorno:
+  totale_venduto += vendita
+  if vendita &gt; 300:
+    quantita_vendite_sopra_300 += 1
+
+print(f'Totale venduto: R$ {totale_venduto:.2f}')
+print(f'Vendite sopra R$ 300: {quantita_vendite_sopra_300}')
+# Totale venduto: R$ 1799.00
+# Vendite sopra R$ 300: 3
+</code></pre></div>
+<h2>Riepilogo del Modulo</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Struttura</th><th>A cosa serve</th><th>Parole chiave</th></tr></thead>
+<tbody>
+<tr><td>Condizionale</td><td>Eseguire un blocco o un altro a seconda di una condizione</td><td><code>if</code>, <code>elif</code>, <code>else</code></td></tr>
+<tr><td>Gestione delle eccezioni</td><td>Reagire a errori di esecuzione senza bloccare il programma</td><td><code>try</code>, <code>except</code>, <code>finally</code></td></tr>
+<tr><td>Ripetizione</td><td>Eseguire un blocco più volte, su un intervallo, lista o dizionario</td><td><code>for</code>, <code>in</code>, <code>range()</code></td></tr>
+<tr><td>Controllo del ciclo</td><td>Interrompere o saltare ripetizioni di un <code>for</code></td><td><code>break</code>, <code>continue</code></td></tr>
+</tbody>
+</table></div>
+<p>Principali operatori e funzioni visti in questo modulo: <code>and</code>, <code>or</code>, <code>range()</code>, <code>.items()</code>, <code>.keys()</code>, <code>.values()</code>, oltre ai tipi di eccezione <code>ZeroDivisionError</code>, <code>TypeError</code>, <code>ValueError</code>, <code>IndexError</code>, <code>KeyError</code> e <code>NameError</code>.</p>
+</div>
+
+
+<div class="quiz" role="group" aria-labelledby="quiz-python-for-q">
+  <p class="kicker-cyan">// Quiz</p>
+  <p class="quiz-q" id="quiz-python-for-q">Qual è la differenza tra <code>break</code> e <code>continue</code> dentro un <code>for</code>?</p>
+  <fieldset class="quiz-options">
+    <legend class="sr-only">Scegli un'alternativa</legend>
+    <label class="quiz-opt" data-correct="0" data-exp="È l'opposto: `break` interrompe l'intero ciclo, e `continue` salta solo la ripetizione attuale."><input type="radio" name="quiz-python-for" value="0" /><span class="txt"><code>break</code> salta la ripetizione attuale e <code>continue</code> interrompe l'intero ciclo</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="1" data-exp="`break` chiude il `for` definitivamente; `continue` avanza solo al prossimo elemento, senza eseguire il resto del blocco attuale."><input type="radio" name="quiz-python-for" value="1" /><span class="txt"><code>break</code> interrompe l'intero ciclo e <code>continue</code> salta direttamente alla prossima ripetizione</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Hanno effetti diversi: uno chiude il ciclo, l'altro avanza solo al prossimo elemento."><input type="radio" name="quiz-python-for" value="2" /><span class="txt">Entrambi hanno esattamente lo stesso effetto</span><span class="mark" aria-hidden="true"></span></label>
+    <label class="quiz-opt" data-correct="0" data-exp="Entrambi funzionano normalmente dentro un `for`, come negli esempi di questa lezione."><input type="radio" name="quiz-python-for" value="3" /><span class="txt"><code>break</code> e <code>continue</code> funzionano solo dentro un <code>while</code></span><span class="mark" aria-hidden="true"></span></label>
+  </fieldset>
+  <div class="quiz-feedback" aria-live="polite" hidden></div>
+</div>
